@@ -14,7 +14,7 @@ module BenchmarkWrapper
         # obscenely ugly, but Benchmark class seems
         # to have nothing to avoid this
         ret_val = nil
-        Benchmark.bm { ret_val = send(without_bm, *args, &blk) }
+        Benchmark.measure { ret_val = send(without_bm, *args, &blk) }
         out.send(out_method, bm)
         ret_val
       end
