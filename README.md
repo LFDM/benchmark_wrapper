@@ -1,5 +1,7 @@
 # BenchmarkWrapper
-
+[![Build Status](https://travis-ci.org/LFDM/array_scanner.png)](https://travis-ci.org/LFDM/benchmark_wrapper)
+[![Coverage Status](https://coveralls.io/repos/LFDM/array_scanner/badge.png)](https://coveralls.io/r/LFDM/benchmark_wrapper)
+[![Dependency Status](https://gemnasium.com/LFDM/array_scanner.png)](https://gemnasium.com/LFDM/benchmark_wrapper)
 TODO: Write a gem description
 
 ## Installation
