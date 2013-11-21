@@ -12,13 +12,11 @@ describe BenchmarkWrapper do
     Class.new do
       extend BenchmarkWrapper
 
-      def test1
-        1 + 1
-      end
-
-      def test2
-        2 + 2
-      end
+      def test1; 1; end
+      def test2; 2; end
+      def test_with_arg(x); 1 + x; end
+      def test_with_blk; yield; end
+      def test_with_arg_and_blk(x); x + yield; end
     end
   end
 
@@ -38,15 +36,15 @@ describe BenchmarkWrapper do
 
       it "wrapped methods return their original return value" do
         dummy.wrap_with_benchmark(:test1)
-        dummy.new.test1.should == 2
+        dummy.new.test1.should == 1
       end
 
       it "can wrap multiple methods at once" do
         dummy.wrap_with_benchmark(:test1, :test2)
         obj = dummy.new
         $stdout.should receive(:puts).twice
-        obj.test1.should == 2
-        obj.test2.should == 4
+        obj.test1.should == 1
+        obj.test2.should == 2
       end
     end
 
@@ -63,10 +61,25 @@ describe BenchmarkWrapper do
         container = []
         dummy.wrap_with_benchmark(:test1, :test2, out: container, out_method: :<<)
         obj = dummy.new
-        obj.test1.should == 2
-        obj.test2.should == 4
+        obj.test1.should == 1
+        obj.test2.should == 2
         container.should have(2).items
       end
+    end
+
+    it "doesn't fail when method take arguments" do
+      dummy.wrap_with_benchmark(:test_with_arg)
+      dummy.new.test_with_arg(0).should == 1
+    end
+
+    it "doesn't fail when method takes a block" do
+      dummy.wrap_with_benchmark(:test_with_blk)
+      dummy.new.test_with_blk { 3 }.should == 3
+    end
+
+    it "doesn't fail when method takes argument and block" do
+      dummy.wrap_with_benchmark(:test_with_arg_and_blk)
+      dummy.new.test_with_arg_and_blk(1) { 4 }.should == 5
     end
   end
 

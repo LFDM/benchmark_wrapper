@@ -10,11 +10,11 @@ module BenchmarkWrapper
     meths.each do |meth|
       without_bm, with_bm = wrapper_methods(meth)
 
-      define_method(with_bm) do
+      define_method(with_bm) do |*args, &blk|
         # obscenely ugly, but Benchmark class seems
         # to have nothing to avoid this
         ret_val = nil
-        bm = Benchmark.measure { ret_val = send(without_bm) }
+        Benchmark.bm { ret_val = send(without_bm, *args, &blk) }
         out.send(out_method, bm)
         ret_val
       end
