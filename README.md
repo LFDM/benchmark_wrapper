@@ -27,14 +27,9 @@ Or install it yourself as:
   class A
     extend BenchmarkWrapper
     
-    
-    def method1
-      1
-    end
+    def method1; 1; end
 
-    def method2(arg)
-      arg + yield
-    end
+    def method2(arg); arg + yield; end
 
     wrap_with_benchmark :method1, :method2
   end
@@ -59,15 +54,13 @@ you wrap them. The following will not work:
 
     wrap_with_benchmark :method1
     
-    def method1
-      1
-    end
+    def method1; 1; end
   end
   
   # NameError: undefined method `method1' for class `A'
 ```
 
-Output defaults to $stdout but can be overwritten:
+Output defaults to $stdout but can be redirected:
 
 ```ruby
   RESULTS = []
@@ -75,9 +68,7 @@ Output defaults to $stdout but can be overwritten:
   class B
     extend BenchmarkWrapper
 
-    def method1
-      1
-    end
+    def method1; 1; end
    
     wrap_with_benchmark :method1, out: RESULTS, out_method: :<<
   end
