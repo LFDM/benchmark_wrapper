@@ -1,7 +1,10 @@
 # BenchmarkWrapper
+[![Version](http://allthebadges.io/benchmark_wrapper/badge_fury.png)](http://allthebadges.io/LFDM/benchmark_wrapper/badge_fury)
 [![Build Status](https://travis-ci.org/LFDM/benchmark_wrapper.png)](https://travis-ci.org/LFDM/benchmark_wrapper)
 [![Coverage Status](https://coveralls.io/repos/LFDM/benchmark_wrapper/badge.png)](https://coveralls.io/r/LFDM/benchmark_wrapper)
 [![Dependency Status](https://gemnasium.com/LFDM/benchmark_wrapper.png)](https://gemnasium.com/LFDM/benchmark_wrapper)
+[![Code Climate](https://codeclimate.com/github/LFDM/benchmark_wrapper.png)](https://codeclimate.com/github/LFDM/benchmark_wrapper)
+
 
 Extend your class to wrap a benchmark around whatever method you want.
 
